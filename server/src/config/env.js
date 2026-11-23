@@ -1,11 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { z } from "zod";
+import appConstants from "../constant/app.constants";
 
 const envSchema = z.object({
-  PORT: z.coerce.number().default(5000),
-  MONGO_URI: z.string(),
-  NODE_ENV: z.enum(["development", "production", "test"]),
+  PORT: z.coerce.number().default(appConstants.PORT),
+  MONGO_URI: z.string().default(appConstants.MONGO_URI),
+  NODE_ENV: z
+    .enum(["development", "production", "test"])
+    .default(appConstants.NODE_ENV),
+  LOGGER_LEVEL: z.string().default(appConstants.LOGGER_LEVEL),
 });
 
 const parsed = envSchema.safeParse(process.env);
