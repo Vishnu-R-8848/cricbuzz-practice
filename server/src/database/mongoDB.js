@@ -4,5 +4,5 @@ import logger from "../config/logger.js";
 
 export async function connectDB() {
   await mongoose.connect(env.MONGO_URI);
-  logger.info("mongoDb is connected")
+  logger.info("mongoDb is connected");
 }
